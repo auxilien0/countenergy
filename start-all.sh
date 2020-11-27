@@ -1,6 +1,6 @@
 #!/bin/bash
 # timeout=${1:-86400};
-timeout=120;
+timeout=3600;
 while true;
 do
   sh data.sh 00012866 csvs-jindra-home csvs-parts-jindra-home;
