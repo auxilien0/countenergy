@@ -1,7 +1,7 @@
 #!/bin/bash
 
 GIT='git';
-$GIT fetch ${2:-remote} master;
+$GIT fetch ${1:-remote} master;
 $GIT reset --hard FETCH_HEAD;
 for f in scripts/start-*.sh; do
   name=$(echo $f | grep -P -o '(?<=start-).*(?=\.sh)');
