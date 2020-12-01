@@ -15,12 +15,12 @@ filename=`date +%Y-%m-%d_%H:%M:%S`.csv;
 wget --load-cookies cookies -O "files/csvs/$2/$filename" "http://sensorfor.com/cloud/device_csv_get.php?id=00$1" || rm -f $filename &&
 if [ ! -f "files/csvs/$2/$filename" ]; then
   echo "File does not exist at all.";
-  . ./start-all.sh
+  return
 fi
 if grep -q "File does not exist." "files/csvs/$2/$filename"; then
   echo "File does not exist.";
   rm -f "files/csvs/$2/$filename";
-  . ./start-all.sh
+  return
 fi
 # sleep before executting awk 200ms
 sleep 0.2 &&
