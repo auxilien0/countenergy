@@ -2,6 +2,7 @@
 GIT='git'
 # $GIT update-ref -d HEAD
 if [ ! -n "$(git status --porcelain files/csvs-parts)" ]; then
+  sleep 120;
   . ./start-all.sh;
 fi
 $GIT add .
