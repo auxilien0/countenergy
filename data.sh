@@ -11,18 +11,16 @@ mainfilename="$1.csv";
 mainfileinfolder="files/csvs/$2/$mainfilename";
 mainfilepartsprefix="files/csvs-parts/$3/part_";
 filename=`date +%Y-%m-%d_%H:%M:%S`.csv;
-# login and fetch cookies
-wget --save-cookies cookies --keep-session-cookies --post-data 'username=Gabriel&password=Zoubek2020&submit=+Enter+%C2%BB+' --delete-after http://sensorfor.com/cloud/login.php &&
 # download file with cookies
 wget --load-cookies cookies -O "files/csvs/$2/$filename" "http://sensorfor.com/cloud/device_csv_get.php?id=00$1" || rm -f $filename &&
 if [ ! -f "files/csvs/$2/$filename" ]; then
   echo "File does not exist at all.";
-  exit 1
+  . ./start-all.sh
 fi
 if grep -q "File does not exist." "files/csvs/$2/$filename"; then
   echo "File does not exist.";
   rm -f "files/csvs/$2/$filename";
-  exit 1
+  . ./start-all.sh
 fi
 # sleep before executting awk 200ms
 sleep 0.2 &&
