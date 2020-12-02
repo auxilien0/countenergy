@@ -26,8 +26,8 @@ fi
 sleep 0.2 &&
 # append to file
 cat "files/csvs/$2/$filename" >> $mainfileinfolder &&
-# sort and remove duplicates in files
-awk '!a[$0]++' $mainfileinfolder > $mainfileinfolder.tmp &&
+# sort and remove duplicates in files | then clockwise rows in the document
+awk '!a[$0]++' $mainfileinfolder | sort -t ";" -rk 1,6 > $mainfileinfolder.tmp &&
 # copy file to main
 mv $mainfileinfolder.tmp $mainfileinfolder &&
 # delete files except main file
